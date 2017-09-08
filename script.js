@@ -20,6 +20,7 @@ function SunController(){
                 lon = pos.coords.longitude;
             });
         } else {
+            alert("geoloc not supported. defaulting to London.");
             lat = 51.5;
             lon = -0.1;
         }
