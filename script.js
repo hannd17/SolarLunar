@@ -2,6 +2,8 @@ document.addEventListener('gesturestart', function (e) {
     e.preventDefault();
 });
 
+document.ontouchmove = function(e){ e.preventDefault(); } 
+
 function SunController(){
     var Sun = this;
     
