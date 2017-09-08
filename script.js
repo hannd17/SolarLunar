@@ -14,7 +14,7 @@ function SunController(){
     
     this.getTimes = function(lat, lon){
         
-        alert(lat + " : " + lon);
+        //alert(lat + " : " + lon);
         
         // get today's sunlight times for London
         Sun.times = SunCalc.getTimes(new Date(), lat, lon);
@@ -31,14 +31,14 @@ function SunController(){
         var lat, lon;
         //alert("init");
         if(navigator.geolocation){
-            alert("has geoloc");
+            //alert("has geoloc");
             navigator.geolocation.getCurrentPosition(function(pos){
                 lat = pos.coords.latitude;
                 lon = pos.coords.longitude;
                 Sun.getTimes(lat, lon);
             });
         } else {
-            alert("geoloc not supported. defaulting to London.");
+            alert("Geolocation access was not available. Defaulted to London.");
             lat = 51.5;
             lon = -0.1;
             
@@ -117,7 +117,7 @@ function SunController(){
             Sun.moon.style.bottom = (max * 100) - (max * percent) + "%";
         } else {
             console.log("Sun times need to be re-initialised.");
-            //Sun.init(); // Init x2 for multidays? idek
+            Sun.init(); // Init x2 for multidays? idek
             Sun.moon.style.bottom = "-100px";
             Sun.star.style.bottom = 0;
         }
