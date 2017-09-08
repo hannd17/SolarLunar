@@ -1,0 +1,65 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Star</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        
+        body{
+            background: rgba(50, 30, 79, 1);
+        }
+        
+        
+        #sun{
+            position: absolute;
+            bottom: 0%;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: all 5s ease;
+            margin-bottom: -30px;
+        }
+        
+        .sun{
+            background: rgba(244, 187, 82, 1);
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            z-index: 20;
+        }
+        
+        .sun-two{
+            width: 60px;
+            height: 60px;
+            transform: rotateZ(45deg);
+        }
+        
+        .sun-circle{
+            position: absolute;
+            background: rgba(239, 210, 150, 1);
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+        }
+        
+        #moon{
+            position: absolute;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: all 5s ease;
+            margin-bottom: -22px;
+        }
+        .moon{
+            background: rgb(186, 186, 186);
+            width: 45px;
+            height: 45px;
+            text-align: center;
+            z-index: 20;
+        }
+    </style>
+</head>
+<body>    
+    <script src="suncalc/suncalc.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
