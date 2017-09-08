@@ -14,6 +14,7 @@ function SunController(){
     
     this.init = function(opt){
         var lat, lon;
+        alert("init");
         if(navigator.geolocation){
             alert("has geoloc");
             navigator.geolocation.getCurrentPosition(function(pos){
