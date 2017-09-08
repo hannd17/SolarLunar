@@ -14,7 +14,7 @@ function SunController(){
     
     this.getTimes = function(lat, lon){
         
-        //alert(lat + " : " + lon);
+        alert(lat + " : " + lon);
         
         if(lat && lon){
             // We have a lat lon
