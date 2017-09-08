@@ -28,6 +28,8 @@ function SunController(){
             lon = -0.1;
         }
         
+        alert(lat + " : " + lon);
+        
         // get today's sunlight times for London
         Sun.times = SunCalc.getTimes(new Date(), lat, lon);
         
