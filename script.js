@@ -18,6 +18,7 @@ function SunController(){
             navigator.geolocation.getCurrentPosition(function(pos){
                 lat = pos.coords.latitude;
                 lon = pos.coords.longitude;
+                alert(lat + ":" + lon);
             });
         } else {
             alert("geoloc not supported. defaulting to London.");
