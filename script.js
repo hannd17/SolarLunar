@@ -13,12 +13,23 @@ function SunController(){
     }
     
     this.init = function(opt){
+        var lat, lon;
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(function(pos){
+                lat = pos.coords.latitude;
+                lon = pos.coords.longitude;
+            });
+        } else {
+            lat = 51.5;
+            lon = -0.1;
+        }
+        
         // get today's sunlight times for London
-        Sun.times = SunCalc.getTimes(new Date(), 51.5, -0.1);
+        Sun.times = SunCalc.getTimes(new Date(), lat, lon);
         
         tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
-        Sun.times.tomorrow = SunCalc.getTimes(tomorrow, 51.5, -0.1);
+        Sun.times.tomorrow = SunCalc.getTimes(tomorrow, lat, lon);
 
     }
     
