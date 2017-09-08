@@ -16,6 +16,15 @@ function SunController(){
         
         //alert(lat + " : " + lon);
         
+        if(lat && lon){
+            // We have a lat lon
+        } else {
+            // We do not have a lat lon
+            alert("Could not get your location, defaulted to London.")
+            lat = 51.5;
+            lon = -0.1;
+        }
+        
         // get today's sunlight times for London
         Sun.times = SunCalc.getTimes(new Date(), lat, lon);
         
