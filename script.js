@@ -1,5 +1,3 @@
-
-
 function SunController(){
     var Sun = this;
     
@@ -48,9 +46,9 @@ function SunController(){
     
     this.update = function(){
         now = new Date();
-        //now = new Date("Sep 10 2017 05:00:32 GMT+0100");
+        //now = new Date("Sep 8 2017 23:59:32 GMT+0100");
         
-        var max = 0.8;
+        var max = 0.90;
         if(now <= Sun.times.solarNoon){
             // Sun is rising
             duration = Sun.times.solarNoon - Sun.times.sunrise;
@@ -93,7 +91,64 @@ function SunController(){
     }
 }
 
+function Star(){
+    // Create a single point star
+    star = document.createElement("div");
+    star.classList.add("star");
+    star.style.background = "white";
+    return star;
+}
 
-var Sun = new SunController();
-Sun.init();
-Sun.appear();
+function GalaxyController(){
+    var Galaxy = this;
+    this.stars = [];
+    
+    this.init = function(opt){
+        this.Sun = opt.sun;
+        Galaxy.Sun.init();
+        Galaxy.Sun.appear();
+        
+        if(opt.stars){
+            for(x of new Array(opt.stars)){
+                star = new Star();
+                star.style.top = Math.floor(Math.random() * 100) + "%";
+                star.style.left = Math.floor(Math.random() * 100) + "%";
+                star.style.opacity = Math.random();
+                star.distance = Math.random();
+                Galaxy.addStar(star);
+            }
+        }
+    }
+    
+    this.addStar = function(star){
+        Galaxy.Sun.galaxy.appendChild(star);
+        Galaxy.stars.push(star);
+    }
+    
+    
+    // Experimental, do not use.
+    this.moveStars = function(){
+        for(x of Galaxy.stars){
+            x.style.top = parseInt(x.style.top.replace("%", "")) + x.distance * 100 + "%";
+        }
+    }
+    
+    // Experimental, do not use.
+    this.movePlanets = function(){
+        planets = document.getElementById("planets");
+        counter = 0;
+        Galaxy.interval = setInterval(function(){
+            planets.style.top = counter * 1 + "px";
+            counter++;
+            if(counter == 10){
+                clearInterval(Galaxy.interval);
+            }
+        }, 1000)
+    }
+}
+
+var Galaxy = new GalaxyController();
+Galaxy.init({
+    sun: new SunController(),
+    stars: 230
+})

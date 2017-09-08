@@ -5,8 +5,16 @@
     <link rel="stylesheet" href="style.css" />
     <style>
         
+        html, body {
+            overflow :hidden;
+            height: 100%;
+        }
+        
         body{
             background: rgba(50, 30, 79, 1);
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
         
         
@@ -17,6 +25,7 @@
             transform: translateX(-50%);
             transition: all 5s ease;
             margin-bottom: -30px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.53);
         }
         
         .sun{
@@ -35,7 +44,7 @@
         
         .sun-circle{
             position: absolute;
-            background: rgba(239, 210, 150, 1);
+            background: rgb(248, 204, 111);
             width: 60px;
             height: 60px;
             border-radius: 60px;
@@ -48,6 +57,7 @@
             transform: translateX(-50%);
             transition: all 5s ease;
             margin-bottom: -22px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.53);
         }
         .moon{
             background: rgb(186, 186, 186);
@@ -56,9 +66,91 @@
             text-align: center;
             z-index: 20;
         }
+        
+        .star{
+            width: 2px;
+            height: 2px;
+            position: absolute;
+            transition: all 1s ease-out;
+            z-index: -1;
+        }
+        
+        
+        #big{
+            position: absolute;
+            background: rgb(253, 27, 79);
+            width: 300px;
+            height: 300px;
+            border-radius: 300px;        
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0px 0px 20px rgb(255, 38, 63);
+        }
+        
+        #big-outer{
+            position: absolute;
+            background: rgba(255, 255, 255, 0.17);
+            width: 340px;
+            height: 340px;
+            border-radius: 340px;
+            top: 40%;
+            left: -150px;
+            box-shadow: 0px 0px 75px rgba(144, 0, 17, 0.65);
+        }
+        
+        #dark{
+            
+            position: absolute;
+            background: rgb(33, 13, 60);
+            width: 150px;
+            height: 150px;
+            border-radius: 150px;        
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0px 0px 20px rgb(38, 255, 230);
+            
+        }
+        
+        #dark-outer{
+            
+            position: absolute;
+            background: rgba(38, 255, 230, 0.69);
+            width: 155px;
+            height: 155px;
+            border-radius: 155px;
+            top: 50%;
+            left: 80%;
+            box-shadow: 0px 0px 150px rgb(38, 255, 230);
+            
+        }
+        
+        #planets{
+            z-index: 5;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+        }
     </style>
 </head>
 <body>    
+    
+    <div id="planets">
+    
+        <div id="big-outer">
+            <div id="big">
+            </div>
+        </div>
+        
+        <div id="dark-outer">
+            <div id="dark">
+            </div>
+        </div>
+    
+    </div>
     <script src="suncalc/suncalc.js"></script>
     <script src="script.js"></script>
 </body>
