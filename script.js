@@ -12,21 +12,7 @@ function SunController(){
         return document.createElement(tag);
     }
     
-    this.init = function(opt){
-        var lat, lon;
-        //alert("init");
-        if(navigator.geolocation){
-            //alert("has geoloc");
-            navigator.geolocation.getCurrentPosition(function(pos){
-                lat = pos.coords.latitude;
-                lon = pos.coords.longitude;
-                //alert(lat + ":" + lon);
-            });
-        } else {
-            alert("geoloc not supported. defaulting to London.");
-            lat = 51.5;
-            lon = -0.1;
-        }
+    this.getTimes = function(lat, lon){
         
         alert(lat + " : " + lon);
         
@@ -36,6 +22,30 @@ function SunController(){
         tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
         Sun.times.tomorrow = SunCalc.getTimes(tomorrow, lat, lon);
+        
+        Sun.appear();
+        
+    }
+    
+    this.init = function(opt){
+        var lat, lon;
+        //alert("init");
+        if(navigator.geolocation){
+            //alert("has geoloc");
+            navigator.geolocation.getCurrentPosition(function(pos){
+                lat = pos.coords.latitude;
+                lon = pos.coords.longitude;
+                Sun.getTimes(lat, lon);
+            });
+        } else {
+            alert("geoloc not supported. defaulting to London.");
+            lat = 51.5;
+            lon = -0.1;
+            
+            Sun.getTimes(lat, lon);
+        }
+        
+    
 
     }
     
@@ -129,7 +139,6 @@ function GalaxyController(){
     this.init = function(opt){
         this.Sun = opt.sun;
         Galaxy.Sun.init();
-        Galaxy.Sun.appear();
         
         if(opt.stars){
             for(x of new Array(opt.stars)){
