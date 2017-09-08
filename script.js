@@ -14,13 +14,13 @@ function SunController(){
     
     this.init = function(opt){
         var lat, lon;
-        alert("init");
+        //alert("init");
         if(navigator.geolocation){
-            alert("has geoloc");
+            //alert("has geoloc");
             navigator.geolocation.getCurrentPosition(function(pos){
                 lat = pos.coords.latitude;
                 lon = pos.coords.longitude;
-                alert(lat + ":" + lon);
+                //alert(lat + ":" + lon);
             });
         } else {
             alert("geoloc not supported. defaulting to London.");
