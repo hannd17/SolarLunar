@@ -14,6 +14,8 @@ function SunController(){
     
     this.getTimes = function(lat, lon){
         console.log(lat, lon);
+        now = new Date();
+        
         if(lat && lon){
             // We have a lat lon
         } else {
@@ -24,11 +26,13 @@ function SunController(){
         }
         
         // get today's sunlight times for London
-        Sun.times = SunCalc.getTimes(new Date(), lat, lon);
+        Sun.times = SunCalc.getTimes(now, lat, lon);
         
-        tomorrow = new Date();
+        tomorrow = new Date(now);
         tomorrow.setDate(tomorrow.getDate() + 1);
         Sun.times.tomorrow = SunCalc.getTimes(tomorrow, lat, lon);
+        
+        Sun.moonLight = SunCalc.getMoonIllumination(now, lat, lon);
         
         Sun.appear();
         
@@ -50,9 +54,7 @@ function SunController(){
             lon = -0.1;
             
             Sun.getTimes(lat, lon);
-        }
-        
-    
+        }    
 
     }
     
@@ -79,19 +81,24 @@ function SunController(){
         
         var moon = Sun.new("div");
         moon.id = "moon";
-        moon.classList.add("moon");
         Sun.moon = moon;
         Sun.galaxy.appendChild(moon);
         
+        var moon_shine = Sun.new("div");
+        moon_shine.id = "moon-shine";
+        moon.appendChild(moon_shine);
+        
         var moon_two = Sun.new("div");
-        moon_two.classList.add("moon");
-        moon_two.classList.add("moon-two");
+        moon_two.id = "moon-shadow";
+        moon_two.style.width = (1 - Sun.moonLight.fraction) * 100 + "%";
         moon.appendChild(moon_two);
+        
+        
     }
     
     this.update = function(){
         now = new Date();
-        //now = new Date("Sep 9 2017 21:30:00 GMT+0100");
+        //now = new Date("Sep 09 2017 21:30:00 GMT+0100");
         
         var max = 0.90;
         if(now <= Sun.times.solarNoon){
@@ -160,7 +167,7 @@ function GalaxyController(){
             
             for(x of new Array(opt.stars)){
                 o  = Math.random();
-                if(o > 0.2){
+                if(o > Math.random() - 0.4){
                     star = new Star();
                     star.style.top = Math.floor(Math.random() * 100) + "%";
                     star.style.left = Math.floor(Math.random() * 100) + "%";
@@ -188,7 +195,7 @@ function GalaxyController(){
                 star.style.animationName = "w-y-b";
                 star.style.animationDuration = 2 + (Math.random() * 10) + "s";
                 star.style.animationIterationCount = "infinite";
-            } else if(Math.random() > 0.9){
+            } else if(Math.random() > 0.8){
                 star.style.animationName = "w-g-g";
                 star.style.animationDuration = 2 + (Math.random() * 10) + "s";
                 star.style.animationIterationCount = "infinite";
