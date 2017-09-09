@@ -13,9 +13,7 @@ function SunController(){
     }
     
     this.getTimes = function(lat, lon){
-        
-        alert(lat + " : " + lon);
-        
+        console.log(lat, lon);
         if(lat && lon){
             // We have a lat lon
         } else {
@@ -84,11 +82,16 @@ function SunController(){
         moon.classList.add("moon");
         Sun.moon = moon;
         Sun.galaxy.appendChild(moon);
+        
+        var moon_two = Sun.new("div");
+        moon_two.classList.add("moon");
+        moon_two.classList.add("moon-two");
+        moon.appendChild(moon_two);
     }
     
     this.update = function(){
         now = new Date();
-        //now = new Date("Sep 8 2017 23:59:32 GMT+0100");
+        //now = new Date("Sep 9 2017 21:30:00 GMT+0100");
         
         var max = 0.90;
         if(now <= Sun.times.solarNoon){
@@ -150,41 +153,48 @@ function GalaxyController(){
         Galaxy.Sun.init();
         
         if(opt.stars){
+            
+            Galaxy.Sun.galaxy.stars = Galaxy.Sun.new("div");
+            Galaxy.Sun.galaxy.stars.id = "stars";
+            Galaxy.Sun.galaxy.appendChild(Galaxy.Sun.galaxy.stars);
+            
             for(x of new Array(opt.stars)){
-                star = new Star();
-                star.style.top = Math.floor(Math.random() * 100) + "%";
-                star.style.left = Math.floor(Math.random() * 100) + "%";
-                star.style.opacity = Math.random();
-                star.distance = Math.random();
-                Galaxy.addStar(star);
+                o  = Math.random();
+                if(o > 0.2){
+                    star = new Star();
+                    star.style.top = Math.floor(Math.random() * 100) + "%";
+                    star.style.left = Math.floor(Math.random() * 100) + "%";
+                    star.style.opacity = o;
+                    Galaxy.addStar(star);
+                }
+                
             }
+            
+            Galaxy.twinkleStars();
         }
     }
     
     this.addStar = function(star){
-        Galaxy.Sun.galaxy.appendChild(star);
+        Galaxy.Sun.galaxy.stars.appendChild(star);
         Galaxy.stars.push(star);
     }
     
     
-    // Experimental, do not use.
-    this.moveStars = function(){
-        for(x of Galaxy.stars){
-            x.style.top = parseInt(x.style.top.replace("%", "")) + x.distance * 100 + "%";
-        }
-    }
-    
-    // Experimental, do not use.
-    this.movePlanets = function(){
-        planets = document.getElementById("planets");
-        counter = 0;
-        Galaxy.interval = setInterval(function(){
-            planets.style.top = counter * 1 + "px";
-            counter++;
-            if(counter == 10){
-                clearInterval(Galaxy.interval);
+    this.twinkleStars = function(){
+        stars = Galaxy.stars;
+        
+        for(star of stars){
+            if(Math.random() > 0.8){
+                star.style.animationName = "w-y-b";
+                star.style.animationDuration = 5 + (Math.random() * 30) + "s";
+                star.style.animationIterationCount = "infinite";
+            } else if(Math.random() > 0.6){
+                star.style.animationName = "w-g-g";
+                star.style.animationDuration = 5 + (Math.random() * 30) + "s";
+                star.style.animationIterationCount = "infinite";
             }
-        }, 1000)
+            
+        }
     }
 }
 

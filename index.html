@@ -14,7 +14,7 @@
         }
         
         body{
-            background: rgba(50, 30, 79, 1);
+            background: rgb(39, 21, 64);
             width: 100%;
             height: 100%;
             overflow: hidden;
@@ -37,6 +37,7 @@
             height: 60px;
             text-align: center;
             z-index: 20;
+            box-shadow: 0 0 50px rgba(255, 216, 110, 0.42);
         }
         
         .sun-two{
@@ -60,14 +61,20 @@
             transform: translateX(-50%);
             transition: all 5s ease;
             margin-bottom: -22px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.53);
+            box-shadow: 0 0 100px rgb(255, 255, 255);
         }
         .moon{
-            background: rgb(186, 186, 186);
-            width: 45px;
-            height: 45px;
+            background: rgb(222, 221, 221);
+            width: 50px;
+            height: 50px;
             text-align: center;
             z-index: 20;
+        }
+        
+        .moon-two{
+            background: rgba(149, 149, 149, 0.1);
+            width: 50%;
+            height: 100%;
         }
         
         .star{
@@ -137,6 +144,35 @@
             height: 100%;
             width: 100%;
         }
+        
+        @keyframes w-y-b {
+            0% {
+                background: white;
+            }
+            25% {
+                background: #ffffb3;
+            }
+            75% {
+                background: #78d0ff;
+            }
+            100% {
+                background: white;
+            }
+        }
+        
+        @keyframes w-g-g {
+            0% {background: white;}
+            25% {
+                background: #aaffaa;
+            }
+            75% {
+                background: #9eff9e;
+            }
+            100% {
+                background: white;
+            }
+        }
+        
     </style>
 </head>
 <body>    
