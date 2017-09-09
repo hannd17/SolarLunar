@@ -184,13 +184,13 @@ function GalaxyController(){
         stars = Galaxy.stars;
         
         for(star of stars){
-            if(Math.random() > 0.8){
+            if(Math.random() > 0.9){
                 star.style.animationName = "w-y-b";
-                star.style.animationDuration = 5 + (Math.random() * 30) + "s";
+                star.style.animationDuration = 2 + (Math.random() * 10) + "s";
                 star.style.animationIterationCount = "infinite";
-            } else if(Math.random() > 0.6){
+            } else if(Math.random() > 0.9){
                 star.style.animationName = "w-g-g";
-                star.style.animationDuration = 5 + (Math.random() * 30) + "s";
+                star.style.animationDuration = 2 + (Math.random() * 10) + "s";
                 star.style.animationIterationCount = "infinite";
             }
             
@@ -201,5 +201,5 @@ function GalaxyController(){
 var Galaxy = new GalaxyController();
 Galaxy.init({
     sun: new SunController(),
-    stars: 230
+    stars: 100
 })
